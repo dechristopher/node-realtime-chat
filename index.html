@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <style>
+      body, html {
+        margin: 0;
+        color: #555;
+        font: 100% "Roboto";
+      }
+
+      .chat {
+        width: 100%;
+      }
+
+      .chat__list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .chat__list-item {
+        padding: 10px;
+        font-size: .9em;
+      }
+
+      .chat__list-item:nth-child(odd) {
+        background-color: #F5F5F5;
+      }
+
+      .chat__input {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        border: 3px solid #F5F5F5;
+        font-size: .9em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat">
+      <ul class="chat__list">
+         <li class="chat__list-item" v-for="message in messages" track-by="$index">{{ message }}</li>
+      </ul>
+
+      <input class="chat__input" type="text" v-model="message" v-on:keydown="send">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script>
+      var socket = io();
+
+      new Vue({
+        el: '.chat',
+        data: {
+          message: '',
+          messages: []
+        },
+        methods: {
+          send: function (e) {
+            if(e.keyCode !== 13){
+              return;
+            }
+
+            socket.emit('message.sent', this.message);
+
+            this.message ='';
+          }
+        },
+        ready: function () {
+          socket.on('message', function (message) {
+            this.messages.push(message);
+          }.bind(this));
+
+        }
+      });
+    </script>
+
+  </body>
+</html>
