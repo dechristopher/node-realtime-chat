@@ -1,5 +1,5 @@
 const io = require('socket.io-client');
-const socket = io.connect('http://localhost:3000', {reconnect: true});
+const socket = io.connect('http://10.105.112.102:3000', {reconnect: true});
 const datetime = require('node-datetime');
 
 var stdin = process.stdin, stdout = process.stdout;
