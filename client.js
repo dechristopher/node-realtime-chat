@@ -25,6 +25,10 @@ stdin.addListener('data', function(d) {
         log('Connected to server.');
     });
 
+    socket.on('disconnect', function (socket) {
+        log('Disconnected to server.');
+    });
+
     socket.on('message', function(message){
       //if(message.user !== username){
         log(message.user + ' : ' + message.contents);
