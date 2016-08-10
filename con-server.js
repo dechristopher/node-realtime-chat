@@ -12,8 +12,8 @@ io.on('connection', function (socket){
   });
 });
 
-http.listen(3000, '0.0.0.0', function() {
-  log('> Started server on *:3000\n');
+http.listen(80, '0.0.0.0', function() {
+  log('> Started server on *:3000');
 });
 
 function log (msg) {

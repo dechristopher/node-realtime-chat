@@ -1,8 +1,8 @@
 {
   "name": "chat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A practice real-time chat application written in Node.js using Express, Socket.js and Vue.js.",
-  "main": "index.js",
+  "main": "con-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node con-server.js",
@@ -16,6 +16,5 @@
     "node-datetime": "^1.0.0",
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.8",
-    "socket.io-events": "^0.4.6"
   }
 }
