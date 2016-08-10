@@ -30,9 +30,10 @@ stdin.addListener('data', function(d) {
     });
 
     socket.on('message', function(message){
-      //if(message.user !== username){
-        log(message.user + ' : ' + message.contents);
-      //}
+      if(message.user !== username){
+        alertTerminal();
+      }
+      log(message.user + ' : ' + message.contents);
     });
   }
 });
@@ -40,4 +41,8 @@ stdin.addListener('data', function(d) {
 function log (msg) {
   var time = datetime.create().format('m-d-y H:M:S');
   console.log('[' + time + '] ' + msg);
+}
+
+function alertTerminal(){
+  console.log("\007");
 }
