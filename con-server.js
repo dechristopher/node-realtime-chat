@@ -1,8 +1,8 @@
 //server.js
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var datetime = require('node-datetime');
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const datetime = require('node-datetime');
 
 io.on('connection', function (socket){
   log('connection');
