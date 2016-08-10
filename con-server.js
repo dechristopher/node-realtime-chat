@@ -3,6 +3,12 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const datetime = require('node-datetime');
+const sp = reqire('schemapack');
+
+var messageSchema = sp.build({
+    user: "string",
+    contents: "string"
+});
 
 io.on('connection', function (socket){
   log('connection');
